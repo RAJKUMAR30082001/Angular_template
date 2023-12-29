@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+    
+        <button type="button" (click)="deposit()">Deposit</button>
+        <button type="button" (click)="withdraw()">Withdraw</button>
+        <button type="button" (click)="checkbalance()">Check Balance</button>
+      </form>
+
+      <form #myForm="ngForm" *ngIf="operation === 'deposit'" (ngSubmit)="submitForm()" [formGroup]="CustomerDetail">
+        <h2>Deposit Money</h2>
+        <label for="name">Name:</label>
+        <input formControlName="Name" type="text" id="name" name="name" required>
+      
+        <label for="accountNumber">Account Number:</label>
+        <input formControlName="accountNumber" type="text" id="accountNumber" name="accountNumber" required>
+      
+        <label for="bankName">Bank Name:</label>
+        <input formControlName="bankName" type="text" id="bankName" name="bankName" required>
+      
+        <label for="depositAmount">Deposit Amount:</label>
+        <input formControlName="Amount" type="number" id="depositAmount" name="depositAmount" required>
+      
+        <button type="submit">Submit Deposit</button>
+      </form>
+      
+      <form #myForm="ngForm" *ngIf="operation === 'withdraw'" (ngSubmit)="submitForm()" [formGroup]="CustomerDetail">
+        <h2>Withdraw Money</h2>
+        <label for="name">Name:</label>
+        <input formControlName="Name" type="text" id="name" name="name" required>
+      
+        <label for="accountNumber">Account Number:</label>
+        <input formControlName="accountNumber" type="text" id="accountNumber" name="accountNumber" required>
+      
+        <label for="bankName">Bank Name:</label>
+        <input formControlName="bankName" type="text" id="bankName" name="bankName" required>
+      
+        <label for="withdrawAmount">Withdraw Amount:</label>
+        <input  formControlName="Amount" type="number" id="withdrawAmount" name="withdrawAmount" required>
+      
+        <button type="submit">Submit Withdrawal</button>
+      </form>
+
+      <div *ngIf="operation === 'checkbalance'" >
+        <input type="text" [(ngModel)]="accountNumber" placeholder="enter the account number">
+        <button (click)="submitForm()"></button>
+        <p>{{_Amount}}</p>
+    </div>
+      
+</body>
+</html>
